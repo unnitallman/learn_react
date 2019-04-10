@@ -1,0 +1,14 @@
+tic_tac_toe/node_modules
+tic_tac_toe//coverage
+tic_tac_toe//build
+
+.DS_Store
+
+tic_tac_toe/.env.local
+tic_tac_toe/.env.development.local
+tic_tac_toe/.env.test.local
+tic_tac_toe/.env.production.local
+
+tic_tac_toe/npm-debug.log*
+tic_tac_toe/yarn-debug.log*
+tic_tac_toe/yarn-error.log*
