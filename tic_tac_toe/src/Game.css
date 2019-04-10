@@ -1,8 +1,8 @@
-.App {
+.app {
   text-align: center;
 }
 
-.App-header {
+.app-header {
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
@@ -17,9 +17,9 @@
    float: right;
    border: 1px outset white;
    background-color: #000;
-   height:200px;
-   width:200px;
-   line-height: 200px;
+   height:150px;
+   width:150px;
+   line-height: 150px;
    cursor:pointer;
    text-align: center;
    font-weight: bold;
@@ -30,6 +30,6 @@
   padding: 0;
 }
 
-.next_player {
+.next-player {
   margin-bottom: 20px;
 }
