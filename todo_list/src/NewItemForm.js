@@ -21,14 +21,22 @@ class NewItemForm extends Component {
     event.preventDefault();
     this.setState({value: ''});
 
-    this.props.add(this.state.value);
+    if(this.state.value != ""){
+      this.props.add(this.state.value);  
+    }
   }
 
   render() {
     return (
-      <form onSubmit={ this.handleSubmit }>
-        <input type="text"   value={this.state.value} onChange={ this.handleChange } />
-        <input type="submit" value="Add" />
+      <form className="form" onSubmit={ this.handleSubmit }>
+        <div className="form-group">
+          <input placeHolder="What needs to be done?" className="form-control" type="text" value={this.state.value} onChange={ this.handleChange } />
+        </div>
+
+        <div className="form-group">  
+          <input className="btn btn-success" type="submit" value="Add" />
+        </div>
+
       </form>
     );
   }

@@ -15,16 +15,16 @@ class TodoApp extends Component {
   initialState(){
     return {
       values: [
-        [1, 'Wake up Deepti'], 
-        [2, 'Boil water'], 
-        [3, 'Cook food']
+        {id: 1, value: 'Wake up Deepti', completed: false}, 
+        {id: 2, value: 'Boil water', completed: true}, 
+        {id: 3, value: 'Cook food', completed: false}
       ]
     }
   }
 
   add(value){
     let newValues = this.state.values.slice();
-    newValues.push([4, value]);
+    newValues.push({id: 4, value: value, completed: false});
     
     this.setState({
       values: newValues
@@ -35,7 +35,7 @@ class TodoApp extends Component {
     let newValues = this.state.values.slice();
 
     for( var i = 0; i < newValues.length; i++){ 
-      if ( newValues[i][1] === value) {
+      if ( newValues[i].value === value) {
         newValues.splice(i, 1); 
       }
     }
@@ -47,7 +47,8 @@ class TodoApp extends Component {
 
   render() {
     return (
-      <div className="todo-app">
+      <div className="todolist">
+        <h1>Todos</h1> 
         <NewItemForm add={ this.add }/>
         <TodoItemsList values={this.state.values} remove={this.remove}/>
       </div>
