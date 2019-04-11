@@ -8,12 +8,13 @@ class TodoApp extends Component {
   constructor(props){
     super(props);
 
-    this.state  = this.initialState();
-    this.add    = this.add.bind(this);
-    this.remove = this.remove.bind(this);
+    this.state          = this.initialState();
+
+    this.add            = this.add.bind(this);
+    this.remove         = this.remove.bind(this);
     this.toggleComplete = this.toggleComplete.bind(this);
-    this.setActiveList = this.setActiveList.bind(this);
-    this.activeValues = this.activeValues.bind(this);
+    this.setActiveList  = this.setActiveList.bind(this);
+    this.activeValues   = this.activeValues.bind(this);
   }
 
   componentDidUpdate(){
@@ -31,6 +32,20 @@ class TodoApp extends Component {
     this.setState({
       values: newValues
     });
+  }
+
+  remove(id){
+    let newValues = this.state.values.slice();
+
+    for( var i = 0; i < newValues.length; i++){ 
+      if ( newValues[i].id === id) {
+        newValues.splice(i, 1); 
+      }
+    }
+    
+    this.setState({
+      values: newValues
+    }); 
   }
 
   toggleComplete(id){
@@ -66,20 +81,6 @@ class TodoApp extends Component {
 
   findItem(values, id){
     return (values.findIndex(function(x){ return(x.id === id) }));
-  }
-
-  remove(id){
-    let newValues = this.state.values.slice();
-
-    for( var i = 0; i < newValues.length; i++){ 
-      if ( newValues[i].id === id) {
-        newValues.splice(i, 1); 
-      }
-    }
-    
-    this.setState({
-      values: newValues
-    }); 
   }
 
   render() {
