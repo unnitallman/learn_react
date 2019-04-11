@@ -1,18 +1,26 @@
 import React, { Component } from 'react';
 
+import Filters from './Filters';
 import TodoItem from './TodoItem';
 
 class TodoItemsList extends Component {
   todoItems(){
-    return this.props.values.map((value) => (<TodoItem value={value.value} key={value.id} remove={this.props.remove} completed={value.completed} />));
+    return this.props.values.map((value) => (<TodoItem value={value.value} key={value.id} remove={this.props.remove} completed={value.completed} toggleComplete={this.props.toggleComplete} />));
   }
 
   render() {
     return (
-      <div className="todo-item-list">
-        <ul class="list-unstyled">
-          {this.todoItems()}
-        </ul>
+      <div className="row">
+        <div className="todo-item-list">
+          <div className="col-md-12">
+            <Filters />
+          </div>
+          <div className="col-md-12">
+            <ul className="list-unstyled list-group">
+              {this.todoItems()}
+            </ul>
+          </div>
+        </div>
       </div>
     );
   }

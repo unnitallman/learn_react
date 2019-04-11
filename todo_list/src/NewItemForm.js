@@ -21,7 +21,7 @@ class NewItemForm extends Component {
     event.preventDefault();
     this.setState({value: ''});
 
-    if(this.state.value != ""){
+    if(this.state.value !== ""){
       this.props.add(this.state.value);  
     }
   }
@@ -30,13 +30,8 @@ class NewItemForm extends Component {
     return (
       <form className="form" onSubmit={ this.handleSubmit }>
         <div className="form-group">
-          <input placeHolder="What needs to be done?" className="form-control" type="text" value={this.state.value} onChange={ this.handleChange } />
+          <input placeholder="What needs to be done?" className="form-control" type="text" value={this.state.value} onChange={ this.handleChange } />
         </div>
-
-        <div className="form-group">  
-          <input className="btn btn-success" type="submit" value="Add" />
-        </div>
-
       </form>
     );
   }

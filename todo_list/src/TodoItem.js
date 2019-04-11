@@ -13,11 +13,13 @@ class TodoItem extends Component {
     this.setState({
       completed: !this.state.completed
     });
+
+    this.props.toggleComplete(this.props.value);
   }
 
   renderItemName(){
     if(this.state.completed){
-      return(<span style={{'text-decoration': 'line-through'}}>{this.props.value}</span>);      
+      return(<span style={{'textDecoration': 'line-through'}}>{this.props.value}</span>);      
     }
     else{
       return(<span>{this.props.value}</span>);
@@ -27,13 +29,15 @@ class TodoItem extends Component {
   render() {
     return (
       <div className="todo-item" id={this.props.id}>
-        
-        <li class="ui-state-default">
-          <div class="checkbox">
-            <label>
-              <input type="checkbox" defaultChecked={this.state.completed} onChange={ this.handleChange }/>
-              { this.renderItemName() }
-            </label>
+        <li className="list-group-item">
+          <div className="row">
+            <div className="col-md-12">
+              <button className="mr-4" href="#"><i className="fa fa-trash" aria-hidden="true"></i></button>
+              <label>
+                <input type="checkbox" defaultChecked={this.state.completed} onChange={ this.handleChange }/>&nbsp;
+                { this.renderItemName() }
+              </label>
+            </div>
           </div>
         </li>
       </div>

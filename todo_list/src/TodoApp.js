@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+import Utils from './Utils';
 import NewItemForm from './NewItemForm';
 import TodoItemsList from './TodoItemsList';
 
@@ -10,25 +11,41 @@ class TodoApp extends Component {
     this.state  = this.initialState();
     this.add    = this.add.bind(this);
     this.remove = this.remove.bind(this);
+    this.toggleComplete = this.toggleComplete.bind(this);
+  }
+
+  componentDidUpdate(){
+    Utils.store(this.props.name, this.state);
   }
 
   initialState(){
-    return {
-      values: [
-        {id: 1, value: 'Wake up Deepti', completed: false}, 
-        {id: 2, value: 'Boil water', completed: true}, 
-        {id: 3, value: 'Cook food', completed: false}
-      ]
-    }
+    return (Utils.store(this.props.name) || {values: []});
   }
 
   add(value){
     let newValues = this.state.values.slice();
-    newValues.push({id: 4, value: value, completed: false});
+    newValues = [{id: Utils.uuid(), value: value, completed: false}].concat(newValues);
     
     this.setState({
       values: newValues
     });
+  }
+
+  toggleComplete(value){
+    console.log(value);
+
+    let newValues = this.state.values.slice();
+    let index = this.findItem(newValues, value);
+
+    newValues[index].completed = !newValues[index].completed;
+
+    this.setState({
+      values: newValues
+    }); 
+  }
+
+  findItem(values, value){
+    return (values.findIndex(function(x){ return(x.value === value) }));
   }
 
   remove(value){
@@ -48,9 +65,9 @@ class TodoApp extends Component {
   render() {
     return (
       <div className="todolist">
-        <h1>Todos</h1> 
+        <h1>{this.props.name}</h1> 
         <NewItemForm add={ this.add }/>
-        <TodoItemsList values={this.state.values} remove={this.remove}/>
+        <TodoItemsList values={this.state.values} remove={this.remove} toggleComplete={this.toggleComplete}/>
       </div>
     );
   }
