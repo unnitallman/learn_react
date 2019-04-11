@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from "react-router-dom";
 
 class Filters extends Component {
   constructor(props){
@@ -19,7 +20,7 @@ class Filters extends Component {
   }
 
   renderNavLink(name, displayName){
-    return (<a onClick={(e) => this.handleClick(e, name)} id={name} className={"nav-link " + this.activeTab(name)} href="/">{displayName}</a>);
+    return (<Link className={"nav-link " + this.activeTab(name)} to={name}>{displayName}</Link>)
   }
 
   render() {

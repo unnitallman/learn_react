@@ -13,7 +13,7 @@ class TodoItemsList extends Component {
       <div className="row">
         <div className="todo-item-list">
           <div className="col-md-12">
-            <Filters activeListName={this.props.activeListName} setActiveList={this.props.setActiveList}/>
+            <Filters activeListName={this.props.activeListName} />
           </div>
           <div className="col-md-12">
             <ul className="list-unstyled list-group">

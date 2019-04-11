@@ -4,6 +4,9 @@ import Utils from './Utils';
 import NewItemForm from './NewItemForm';
 import TodoItemsList from './TodoItemsList';
 
+import { Route } from "react-router-dom";
+
+
 class TodoApp extends Component {
   constructor(props){
     super(props);
@@ -13,12 +16,17 @@ class TodoApp extends Component {
     this.add            = this.add.bind(this);
     this.remove         = this.remove.bind(this);
     this.toggleComplete = this.toggleComplete.bind(this);
-    this.setActiveList  = this.setActiveList.bind(this);
     this.activeValues   = this.activeValues.bind(this);
   }
 
   componentDidUpdate(){
     Utils.store(this.props.name, this.state);
+  }
+
+  componentWillMount(){
+    if(this.props.activeListName){
+      this.setState({activeListName: this.props.activeListName})
+    }
   }
 
   initialState(){
@@ -59,12 +67,6 @@ class TodoApp extends Component {
     }); 
   }
 
-  setActiveList(name){
-    this.setState({
-      activeListName: name
-    })
-  }
-
   activeValues(){
     if(this.state.activeListName === 'all'){
       return this.state.values;
@@ -88,7 +90,7 @@ class TodoApp extends Component {
       <div className="todolist">
         <h1>{this.props.name}</h1> 
         <NewItemForm add={ this.add }/>
-        <TodoItemsList values={this.activeValues()} remove={this.remove} toggleComplete={this.toggleComplete} deleteItem={this.remove} setActiveList={this.setActiveList} activeListName={this.state.activeListName}/>
+        <TodoItemsList values={this.activeValues()} remove={this.remove} toggleComplete={this.toggleComplete} deleteItem={this.remove} activeListName={this.state.activeListName}/>
       </div>
     );
   }
