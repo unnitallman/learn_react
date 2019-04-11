@@ -6,15 +6,22 @@ class TodoItem extends Component {
 
     this.state = {completed: this.props.completed}
 
-    this.handleChange = this.handleChange.bind(this);
+    this.handleCheckbox = this.handleCheckbox.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
-  handleChange(event){
+  handleCheckbox(event){
     this.setState({
       completed: !this.state.completed
     });
 
-    this.props.toggleComplete(this.props.value);
+    this.props.toggleComplete(this.props.id);
+  }
+
+  handleDelete(event){
+    event.preventDefault();
+
+    this.props.deleteItem(this.props.id);
   }
 
   renderItemName(){
@@ -32,9 +39,9 @@ class TodoItem extends Component {
         <li className="list-group-item">
           <div className="row">
             <div className="col-md-12">
-              <button className="mr-4" href="#"><i className="fa fa-trash" aria-hidden="true"></i></button>
+              <button onClick={this.handleDelete} className="mr-4" href="#"><i className="fa fa-trash" aria-hidden="true"></i></button>
               <label>
-                <input type="checkbox" defaultChecked={this.state.completed} onChange={ this.handleChange }/>&nbsp;
+                <input type="checkbox" defaultChecked={this.state.completed} onChange={ this.handleCheckbox }/>&nbsp;
                 { this.renderItemName() }
               </label>
             </div>

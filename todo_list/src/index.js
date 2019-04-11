@@ -5,6 +5,6 @@ import './index.css';
 
 import TodoApp from './TodoApp';
 
-ReactDOM.render(<TodoApp name="Unni's Todolist" />, document.getElementById('root1'));
-ReactDOM.render(<TodoApp name="Deepti's Todolist" />, document.getElementById('root2'));
+ReactDOM.render(<TodoApp name="Unni's ToDolist" />, document.getElementById('root1'));
+ReactDOM.render(<TodoApp name="Deepti's ToDolist" />, document.getElementById('root2'));
 

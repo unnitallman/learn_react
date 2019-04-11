@@ -31,11 +31,9 @@ class TodoApp extends Component {
     });
   }
 
-  toggleComplete(value){
-    console.log(value);
-
+  toggleComplete(id){
     let newValues = this.state.values.slice();
-    let index = this.findItem(newValues, value);
+    let index = this.findItem(newValues, id);
 
     newValues[index].completed = !newValues[index].completed;
 
@@ -44,15 +42,15 @@ class TodoApp extends Component {
     }); 
   }
 
-  findItem(values, value){
-    return (values.findIndex(function(x){ return(x.value === value) }));
+  findItem(values, id){
+    return (values.findIndex(function(x){ return(x.id === id) }));
   }
 
-  remove(value){
+  remove(id){
     let newValues = this.state.values.slice();
 
     for( var i = 0; i < newValues.length; i++){ 
-      if ( newValues[i].value === value) {
+      if ( newValues[i].id === id) {
         newValues.splice(i, 1); 
       }
     }
@@ -67,7 +65,7 @@ class TodoApp extends Component {
       <div className="todolist">
         <h1>{this.props.name}</h1> 
         <NewItemForm add={ this.add }/>
-        <TodoItemsList values={this.state.values} remove={this.remove} toggleComplete={this.toggleComplete}/>
+        <TodoItemsList values={this.state.values} remove={this.remove} toggleComplete={this.toggleComplete} deleteItem={this.remove} />
       </div>
     );
   }
