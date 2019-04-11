@@ -12,6 +12,8 @@ class TodoApp extends Component {
     this.add    = this.add.bind(this);
     this.remove = this.remove.bind(this);
     this.toggleComplete = this.toggleComplete.bind(this);
+    this.setActiveList = this.setActiveList.bind(this);
+    this.activeValues = this.activeValues.bind(this);
   }
 
   componentDidUpdate(){
@@ -19,7 +21,7 @@ class TodoApp extends Component {
   }
 
   initialState(){
-    return (Utils.store(this.props.name) || {values: []});
+    return (Utils.store(this.props.name) || {values: [], activeListName: 'all'});
   }
 
   add(value){
@@ -40,6 +42,26 @@ class TodoApp extends Component {
     this.setState({
       values: newValues
     }); 
+  }
+
+  setActiveList(name){
+    this.setState({
+      activeListName: name
+    })
+  }
+
+  activeValues(){
+    if(this.state.activeListName === 'all'){
+      return this.state.values;
+    }
+
+    if(this.state.activeListName === 'active'){
+      return this.state.values.filter((x) => {return x.completed===false});
+    }
+
+    if(this.state.activeListName === 'completed'){
+      return this.state.values.filter((x) => {return x.completed===true});
+    }
   }
 
   findItem(values, id){
@@ -65,7 +87,7 @@ class TodoApp extends Component {
       <div className="todolist">
         <h1>{this.props.name}</h1> 
         <NewItemForm add={ this.add }/>
-        <TodoItemsList values={this.state.values} remove={this.remove} toggleComplete={this.toggleComplete} deleteItem={this.remove} />
+        <TodoItemsList values={this.activeValues()} remove={this.remove} toggleComplete={this.toggleComplete} deleteItem={this.remove} setActiveList={this.setActiveList} activeListName={this.state.activeListName}/>
       </div>
     );
   }
