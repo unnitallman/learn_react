@@ -7,7 +7,7 @@ class TodoItem extends Component {
     this.state = {completed: this.props.completed}
 
     this.handleCheckbox = this.handleCheckbox.bind(this);
-    this.handleDelete = this.handleDelete.bind(this);
+    this.handleDelete   = this.handleDelete.bind(this);
   }
 
   handleCheckbox(event){
