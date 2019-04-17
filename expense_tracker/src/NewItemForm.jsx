@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import moment from 'moment';
 
 class NewItemForm extends Component {
   constructor(props){
@@ -23,7 +24,7 @@ class NewItemForm extends Component {
     event.preventDefault();
     
     if(this.validForm(this.state)){
-      this.props.add(this.state.amount, this.state.description, this.state.category);  
+      this.props.add(this.state.amount, this.state.description, this.state.category, moment());  
       this.setState({description: '', amount: '', category: ''});
     }
   }
@@ -49,8 +50,8 @@ class NewItemForm extends Component {
     return (
       <form className="form" onSubmit={ this.handleSubmit }>
         <div className="form-group input-group">
-          <div class="input-group-prepend" style={{width: '100%'}}>
-            <span class="input-group-text">₹</span>
+          <div className="input-group-prepend" style={{width: '100%'}}>
+            <span className="input-group-text">₹</span>
             <input placeholder="How much did you spend?" className="form-control" type="number" value={this.state.amount} onChange={ (e) => { this.handleChange(e, 'amount') } } />
           </div>
         </div>

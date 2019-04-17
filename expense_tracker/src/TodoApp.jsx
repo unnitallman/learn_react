@@ -31,9 +31,9 @@ class TodoApp extends Component {
     return (Utils.store(this.props.name) || {values: [], activeListName: 'all'});
   }
 
-  add(amount, description, category){
+  add(amount, description, category, date){
     let newValues = this.state.values.slice();
-    newValues = [{id: Utils.uuid(), amount: amount, description: description, category: category}].concat(newValues);
+    newValues = [{id: Utils.uuid(), date: date, amount: amount, description: description, category: category}].concat(newValues);
     
     this.setState({
       values: newValues

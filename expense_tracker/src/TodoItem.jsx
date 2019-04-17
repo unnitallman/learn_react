@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import moment from 'moment';
 
 class TodoItem extends Component {
   constructor(props){
@@ -30,10 +31,11 @@ class TodoItem extends Component {
         <li className="list-group-item">
           <div className="row">
             <div className="col-md-12">
-              <button onClick={this.handleDelete} className="mr-2" href="#"><i className="fa fa-trash" aria-hidden="true"></i></button>
+              <small className="text-muted mr-2">{moment(this.props.date).format('DD-MM-YYYY')}</small>
               <span>{this.props.description}</span>
-              <span class="badge badge-primary ml-2">{this.props.category}</span>
-              <span className="float-right"><b>{this.props.amount}</b></span>
+              <i onClick={this.handleDelete} className="m-1 pl-1 float-right fa fa-trash" aria-hidden="true"></i>
+              <span className="float-right"><b>₹{this.props.amount}</b></span>
+              <small className="form-text text-muted"><span className="badge badge-primary">{this.props.category}</span></small>
             </div>
           </div>
         </li>

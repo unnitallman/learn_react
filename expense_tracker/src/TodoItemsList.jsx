@@ -5,7 +5,7 @@ import TodoItem from './TodoItem';
 
 class TodoItemsList extends Component {
   todoItems(){
-    return this.props.values.map((value) => (<TodoItem description={value.description} category={value.category} amount={value.amount} id={value.id} key={value.id} remove={this.props.remove} completed={value.completed} toggleComplete={this.props.toggleComplete} deleteItem={this.props.deleteItem}/>));
+    return this.props.values.map((value) => (<TodoItem date={value.date} description={value.description} category={value.category} amount={value.amount} id={value.id} key={value.id} remove={this.props.remove} completed={value.completed} toggleComplete={this.props.toggleComplete} deleteItem={this.props.deleteItem}/>));
   }
 
   render() {
