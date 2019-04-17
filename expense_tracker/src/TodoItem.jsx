@@ -24,15 +24,6 @@ class TodoItem extends Component {
     this.props.deleteItem(this.props.id);
   }
 
-  renderItemName(){
-    if(this.state.completed){
-      return(<span style={{'textDecoration': 'line-through'}}>{this.props.value}</span>);      
-    }
-    else{
-      return(<span>{this.props.value}</span>);
-    }
-  }
-
   render() {
     return (
       <div className="todo-item" id={this.props.id}>
@@ -40,7 +31,9 @@ class TodoItem extends Component {
           <div className="row">
             <div className="col-md-12">
               <button onClick={this.handleDelete} className="mr-2" href="#"><i className="fa fa-trash" aria-hidden="true"></i></button>
-              { this.renderItemName() }
+              <span>{this.props.description}</span>
+              <span class="badge badge-primary ml-2">{this.props.category}</span>
+              <span className="float-right"><b>{this.props.amount}</b></span>
             </div>
           </div>
         </li>

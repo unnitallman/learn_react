@@ -22,11 +22,14 @@ class NewItemForm extends Component {
   handleSubmit(event){
     event.preventDefault();
     
-    this.setState({description: '', amount: '', category: ''});
-
-    if(this.state.category !== ""){
-      this.props.add(this.state.description);  
+    if(this.validForm(this.state)){
+      this.props.add(this.state.amount, this.state.description, this.state.category);  
+      this.setState({description: '', amount: '', category: ''});
     }
+  }
+
+  validForm(state){
+    return( (state.amount !== "") && (state.description !== "") && (state.category !== ""));
   }
 
   categories(){
@@ -45,8 +48,11 @@ class NewItemForm extends Component {
   render() {
     return (
       <form className="form" onSubmit={ this.handleSubmit }>
-        <div className="form-group">
-          <input placeholder="How much did you spend?" className="form-control" type="text" value={this.state.amount} onChange={ (e) => { this.handleChange(e, 'amount') } } />
+        <div className="form-group input-group">
+          <div class="input-group-prepend" style={{width: '100%'}}>
+            <span class="input-group-text">₹</span>
+            <input placeholder="How much did you spend?" className="form-control" type="number" value={this.state.amount} onChange={ (e) => { this.handleChange(e, 'amount') } } />
+          </div>
         </div>
 
         <div className="form-group">
